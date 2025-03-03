@@ -188,7 +188,10 @@ footer button img {
   margin-top: -30px;   
   visibility: hidden;
 }
-
+a {
+  text-decoration: none;
+  color: #000000;
+}
 
 
 
