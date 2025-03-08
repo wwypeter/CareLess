@@ -9,12 +9,13 @@ function initPage() {
     }
   });
   if (window.innerWidth > 768) {
-    var shift = 3;
     var headerContent = document.querySelector('.header-content');
     var firstNavLink = document.querySelector('#nav-links a:first-of-type');
-    var marginAdjust = 20;
     var offsetLeft = firstNavLink.getBoundingClientRect().left;
-    headerContent.style.marginLeft = (offsetLeft - marginAdjust + shift) + "px";
+    headerContent.style.marginLeft = offsetLeft + "px";
+
+    var shift = 3;
+    var marginAdjust = 20;
     var lastNavLink = document.querySelector('#nav-links a:last-of-type');
     var offsetRight = window.innerWidth - lastNavLink.getBoundingClientRect().right;
     var fadeText = document.getElementById('fadeText');
@@ -60,8 +61,20 @@ function loadPage(url) {
       var doc = parser.parseFromString(html, 'text/html');
       var newMain = doc.querySelector('main');
       if (newMain) {
+        // Main-Inhalt ersetzen
         document.querySelector('main').innerHTML = newMain.innerHTML;
+        // Titel aktualisieren
         document.title = doc.title;
+        // Nach dem Austausch unerwünschte Inline-Styles entfernen,
+        // außer wenn die Seite die Klasse "impressum" besitzt.
+        if (!doc.body.classList.contains('impressum')) {
+          document.querySelector('main').removeAttribute('style');
+        }
+        // Footer ersetzen, falls im neuen Dokument vorhanden
+        var newFooter = doc.querySelector('footer');
+        if (newFooter) {
+          document.querySelector('footer').outerHTML = newFooter.outerHTML;
+        }
         window.scrollTo(0, 0);
         initPage();
         setupNavLinks();
@@ -96,14 +109,6 @@ function toggleNav() {
 }
 
 document.addEventListener('scroll', function() {
-  if (window.innerWidth <= 768) {
-    var fadeImage = document.getElementById('fadeImage');
-    var fadeText = document.getElementById('fadeText');
-    if (fadeImage) fadeImage.style.opacity = 1;
-    if (fadeText) fadeText.style.opacity = 1;
-    document.getElementById('footer').style.bottom = '0';
-    return;
-  }
   var scrollY = window.scrollY;
   var threshold = 200;
   if (window.location.pathname.indexOf("0_pap.html") !== -1 ||
@@ -119,8 +124,19 @@ document.addEventListener('scroll', function() {
   var imageOpacity = 1 - Math.min(scrollY / threshold, 1);
   var textOpacity = Math.min(scrollY / threshold, 1);
   if (image) image.style.opacity = imageOpacity;
-  if (text) text.style.opacity = textOpacity;
-  footer.style.bottom = scrollY >= threshold ? '0' : '-60px';
+  
+  // Bei mobilen Ansichten den Textfade deaktivieren:
+  if (window.innerWidth <= 768) {
+    if (text) text.style.opacity = 1;
+    footer.style.bottom = scrollY >= threshold ? '0' : '-50px';
+  } else {
+    if (text) text.style.opacity = textOpacity;
+    footer.style.bottom = scrollY >= threshold ? '0' : '-60px';
+  }
+});
+
+window.addEventListener('resize', function() {
+  initPage();
 });
 
 
