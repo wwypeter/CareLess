@@ -69,35 +69,55 @@ main {
   text-align: center;
   position: relative;
   font-size: 22px;
-  min-height: calc(100vh + 100px); 
+  min-height: calc(100vh + 100px);
   margin-top: 180px;
 }
-#fadeImage {
-  height: auto;
-  transition: opacity 0.5s ease-out;
+
+/* Desktop: .offer-text nach Code 2 */
+@media (min-width: 769px) {
+  .offer-text {
+    padding: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: justify;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    position: absolute;
+    top: 55%;
+    border: none;
+  }
+  .offer-text p {
+    margin: 10px 0;
+    line-height: 1.0;
+  }
+  .offer-text ul {
+    text-align: left;
+    list-style-position: inside;
+    margin: 10px 0;
+    padding-left: 0;
+    line-height: 1.0;
+  }
 }
-.offer-text {
-  padding: 20px;
-  font-size: 24px;
-  color: #333;
-  text-align: justify;
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  position: absolute;
-  top: 55%;
-  border: none;
+
+/* Mobile: .offer-text nach Code 1 */
+@media (max-width: 768px) {
+  .offer-text {
+    position: relative !important;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 80px;
+    padding-bottom: 80px;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    font-size: 18px;
+    opacity: 1;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
-.offer-text p {
-  margin: 10px 0;
-  line-height: 1.0;
-}
-.offer-text ul {
-  text-align: left;
-  list-style-position: inside;
-  margin: 10px 0;
-  padding-left: 0;
-  line-height: 1.0;
-}
+
 footer {
   background: #f2f2f2;
   width: 100%;
@@ -113,9 +133,15 @@ footer {
   transition: bottom 0.5s;
   z-index: 1000;
 }
-footer a.impressum {
+.footer-left {
   position: absolute;
   left: 3%;
+}
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+footer a.impressum {
   text-decoration: none;
   color: #000;
   padding: 10px 15px;
@@ -132,6 +158,8 @@ footer button img {
   max-width: 30px;
   height: auto;
 }
+
+/* Weitere mobile Anpassungen */
 @media (max-width: 768px) {
   #burger-menu {
     display: block;
@@ -156,41 +184,65 @@ footer button img {
   .header-content {
     font-size: 28px;
   }
-  .offer-text {
-    position: relative !important;
-    text-align: left;
-    margin: 0 auto;
-    margin-top: 80px;
-    padding-bottom: 80px;
-    left: auto !important;
-    top: auto !important;
-    transform: none !important;
-    font-size: 18px;
-    opacity: 1;
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
   footer {
-    justify-content: flex-end;
+    height: 50px;
+    line-height: 50px;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
   }
-  footer a.impressum {
-    font-size: 16px;
+  .footer-left {
+    width: 33.33%;
+    text-align: left;
+    position: static;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  .footer-left a.impressum {
+    padding-left: 5px;
+    padding: 0;
+    margin: 0;
+    display: block;
+    white-space: normal;
+    line-height: 1.2;
+  }
+  .footer-right {
+    width: 66.67%;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+  }
+  .footer-right button {
+    margin: 0;
+    flex: 1;
+  }
+  .footer-right button img {
+    max-width: 60%;
+    height: auto;
+    object-fit: contain;
+  }
+  .footer-right button:last-child {
+    margin-right: 5px;
   }
   main {
-    min-height: calc(100vh + 15px);
+    min-height: auto;
   }
-}
-#scroll::before {
-  content: "";
-  display: block;
-  height: 50px;        
-  margin-top: -30px;   
-  visibility: hidden;
-}
-a {
-  text-decoration: none;
-  color: #000000;
+  /* Impressum-spezifische Anpassungen nur für Mobilansicht */
+  body.impressum .main {
+    font-size: 6px;
+  }
+  body.impressum .img-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 }
 
 
