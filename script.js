@@ -61,16 +61,11 @@ function loadPage(url) {
       var doc = parser.parseFromString(html, 'text/html');
       var newMain = doc.querySelector('main');
       if (newMain) {
-        // Main-Inhalt ersetzen
         document.querySelector('main').innerHTML = newMain.innerHTML;
-        // Titel aktualisieren
         document.title = doc.title;
-        // Nach dem Austausch unerwünschte Inline-Styles entfernen,
-        // außer wenn die Seite die Klasse "impressum" besitzt.
         if (!doc.body.classList.contains('impressum')) {
           document.querySelector('main').removeAttribute('style');
         }
-        // Footer ersetzen, falls im neuen Dokument vorhanden
         var newFooter = doc.querySelector('footer');
         if (newFooter) {
           document.querySelector('footer').outerHTML = newFooter.outerHTML;
@@ -110,33 +105,36 @@ function toggleNav() {
 
 document.addEventListener('scroll', function() {
   var scrollY = window.scrollY;
-  var threshold = 200;
-  if (window.location.pathname.indexOf("0_pap.html") !== -1 ||
-      window.location.pathname.indexOf("0_sap.html") !== -1 ||
-      window.location.pathname.indexOf("index.html") !== -1 ||
-      window.location.pathname.indexOf("0_kontakt.html") !== -1 ||
-      window.location.pathname.indexOf("0_map.html") !== -1) {
-    threshold = 200;
-  }
   var image = document.getElementById('fadeImage');
   var text = document.getElementById('fadeText');
   var footer = document.getElementById('footer');
-  var imageOpacity = 1 - Math.min(scrollY / threshold, 1);
-  var textOpacity = Math.min(scrollY / threshold, 1);
+  var imageOpacity = 1 - Math.min(scrollY / 100, 1);
+  var textOpacity = Math.min(scrollY / 100, 1);
   if (image) image.style.opacity = imageOpacity;
   
-  // Bei mobilen Ansichten den Textfade deaktivieren:
   if (window.innerWidth <= 768) {
     if (text) text.style.opacity = 1;
-    footer.style.bottom = scrollY >= threshold ? '0' : '-50px';
+    // Fixer Triggerwert: 100px
+    var triggerScroll = 100;
+    footer.style.bottom = scrollY >= triggerScroll ? '0' : '-50px';
+    var header = document.querySelector('header');
+    var nav = document.querySelector('nav');
+    if (header && nav) {
+      if (scrollY >= triggerScroll) {
+         header.style.top = '-120px';
+         nav.style.top = '0';
+      } else {
+         header.style.top = '0';
+         nav.style.top = '120px';
+      }
+    }
   } else {
     if (text) text.style.opacity = textOpacity;
-    footer.style.bottom = scrollY >= threshold ? '0' : '-60px';
+    footer.style.bottom = scrollY >= 100 ? '0' : '-60px';
   }
 });
 
 window.addEventListener('resize', function() {
   initPage();
 });
-
 
