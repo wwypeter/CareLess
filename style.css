@@ -73,7 +73,7 @@ main {
   margin-top: 180px;
 }
 
-/* Desktop: .offer-text nach Code 2 */
+/* Desktop: .offer-text */
 @media (min-width: 769px) {
   .offer-text {
     padding: 20px;
@@ -99,8 +99,14 @@ main {
   }
 }
 
-/* Mobile: .offer-text nach Code 1 */
+/* Mobile: .offer-text */
 @media (max-width: 768px) {
+  header {
+    transition: top 0.5s;
+  }
+  nav {
+    transition: top 0.5s;
+  }
   .offer-text {
     position: relative !important;
     text-align: left;
@@ -187,7 +193,7 @@ footer button img {
   footer {
     height: 50px;
     line-height: 50px;
-    bottom: 0;
+    bottom: -50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
