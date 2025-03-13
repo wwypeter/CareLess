@@ -164,8 +164,6 @@ footer button img {
   max-width: 30px;
   height: auto;
 }
-
-/* Weitere mobile Anpassungen */
 @media (max-width: 768px) {
   #burger-menu {
     display: block;
@@ -240,7 +238,6 @@ footer button img {
   main {
     min-height: auto;
   }
-  /* Impressum-spezifische Anpassungen nur für Mobilansicht */
   body.impressum .main {
     font-size: 6px;
   }
@@ -250,6 +247,11 @@ footer button img {
     object-fit: contain;
   }
 }
+
+.offer-text a {
+  color: #000;
+}
+
 
 
 
