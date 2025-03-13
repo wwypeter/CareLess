@@ -108,14 +108,14 @@ document.addEventListener('scroll', function() {
   var image = document.getElementById('fadeImage');
   var text = document.getElementById('fadeText');
   var footer = document.getElementById('footer');
-  var imageOpacity = 1 - Math.min(scrollY / 100, 1);
-  var textOpacity = Math.min(scrollY / 100, 1);
+  var imageOpacity = 1 - Math.min(scrollY / 160, 1);
+  var textOpacity = Math.min(scrollY / 200, 1);
   if (image) image.style.opacity = imageOpacity;
   
   if (window.innerWidth <= 768) {
     if (text) text.style.opacity = 1;
     // Fixer Triggerwert: 100px
-    var triggerScroll = 100;
+    var triggerScroll = 90;
     footer.style.bottom = scrollY >= triggerScroll ? '0' : '-50px';
     var header = document.querySelector('header');
     var nav = document.querySelector('nav');
