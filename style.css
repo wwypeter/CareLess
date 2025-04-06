@@ -25,9 +25,9 @@ header {
   display: inline-block;
 }
 .logo-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  height: 80px;
+  width: auto;
+  object-fit: contain;
   margin-right: 20px;
 }
 nav {
@@ -122,6 +122,10 @@ main {
     margin-left: 5%;
     margin-right: 5%;
   }
+  .logo-img {
+    height: 60px;
+    width: auto;
+  }
 }
 
 footer {
@@ -180,10 +184,6 @@ footer button img {
   }
   #fadeImage {
     display: none;
-  }
-  .logo-img {
-    width: 80px;
-    height: 80px;
   }
   .header-content {
     font-size: 28px;
