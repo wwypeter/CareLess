@@ -167,94 +167,89 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================
-  // SPLIT-CARD: MOBIL & DESKTOP VERHALTEN
-  // =========================================================
-  const splitCard = document.querySelector('.split-card');
-  if (splitCard) {
-    function isMobile() {
-      return window.innerWidth <= 768;
-    }
-    let splitOpen = false;
-
-    // MOBIL: Split-Card Klick-Logik
-    splitCard.addEventListener('click', function(e) {
-      if (!isMobile()) return;
-
-      // Wenn ein Split-Feld geklickt wurde
-      if (e.target.classList.contains('split-field')) {
-        if (!splitOpen) {
-          splitCard.classList.add('open-touch');
-          splitOpen = true;
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        } else {
-          const target = document.querySelector(e.target.getAttribute('data-target'));
-          if (target) {
-            const offset = (window.innerWidth <= 600) ? 0 : 220;
-            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-              top: elementPosition - offset,
-              behavior: "smooth"
-            });
-          }
-          splitCard.classList.remove('open-touch');
-          splitOpen = false;
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
-      }
-
-      // Klick auf freien Bereich der Card
-      if (!splitOpen) {
-        splitCard.classList.add('open-touch');
-        splitOpen = true;
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      } else {
-        splitCard.classList.remove('open-touch');
-        splitOpen = false;
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-    });
-
-    // Klick außerhalb schließt die Split-Card (Mobil)
-    document.addEventListener('click', function(e) {
-      if (isMobile() && splitOpen && !splitCard.contains(e.target)) {
-        splitCard.classList.remove('open-touch');
-        splitOpen = false;
-      }
-    });
-
-    // Beim Resize schließen
-    window.addEventListener('resize', function() {
-      if (!isMobile()) {
-        splitCard.classList.remove('open-touch');
-        splitOpen = false;
-      }
-    });
-
-    // DESKTOP: Direktes Scrollen bei Split-Feld-Klick
-    document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
-      field.addEventListener('click', function (e) {
-        if (window.innerWidth > 768) {
-          const target = document.querySelector(field.getAttribute('data-target'));
-          if (target) {
-            const offset = 220; // Desktop-Offset
-            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-              top: elementPosition - offset,
-              behavior: "smooth"
-            });
-          }
-        }
-      });
-    });
+// SPLIT-CARD: MOBIL & DESKTOP VERHALTEN
+// =========================================================
+const splitCard = document.querySelector('.split-card');
+if (splitCard) {
+  function isMobile() {
+    return window.innerWidth <= 768;
   }
+  let splitOpen = false;
+
+  // DESKTOP: Direktes Scrollen bei Split-Feld-Klick
+  document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
+    field.addEventListener('click', function (e) {
+      if (window.innerWidth > 768) {
+        const target = document.querySelector(field.getAttribute('data-target'));
+        if (target) {
+          const offset = 220; // Desktop-Offset
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: "smooth"
+          });
+        }
+      }
+    });
+  });
+
+  // MOBIL: Split-Card Klick-Logik
+  splitCard.addEventListener('click', function(e) {
+    if (!isMobile()) return;
+
+    // Card ist ZU: Öffnen und Ende (es wird nichts weiteres gemacht)
+    if (!splitCard.classList.contains('open-touch')) {
+      splitCard.classList.add('open-touch');
+      splitOpen = true;
+      // Nur bei geschlossenem Zustand das Event abfangen!
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    // Card ist OFFEN: Prüfen ob Split-Feld geklickt wurde
+    if (e.target.classList.contains('split-field')) {
+      // Jetzt Auswahl, Scroll und Schließen
+      const target = document.querySelector(e.target.getAttribute('data-target'));
+      if (target) {
+        const offset = (window.innerWidth <= 600) ? 0 : 220;
+        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth"
+        });
+      }
+      splitCard.classList.remove('open-touch');
+      splitOpen = false;
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    // Card ist offen, aber es wurde NICHT auf ein Feld getippt (z.B. aufs Overlay): Schließen
+    splitCard.classList.remove('open-touch');
+    splitOpen = false;
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  // Klick außerhalb schließt die Split-Card (Mobil)
+  document.addEventListener('click', function(e) {
+    if (isMobile() && splitOpen && !splitCard.contains(e.target)) {
+      splitCard.classList.remove('open-touch');
+      splitOpen = false;
+    }
+  });
+
+  // Beim Resize schließen
+  window.addEventListener('resize', function() {
+    if (!isMobile()) {
+      splitCard.classList.remove('open-touch');
+      splitOpen = false;
+    }
+  });
+}
+
 
   // =========================================================
   // SOCIAL-CARD NAVIGATION (SCROLL MIT OFFSET)
