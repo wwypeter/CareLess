@@ -185,9 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================
-  // SPLIT-CARD: KLICK STATT HOVER IN DER MOBILANSICHT
-  // =========================================================
-  const splitCard = document.querySelector('.split-card');
+// SPLIT-CARD: KLICK STATT HOVER IN DER MOBILANSICHT
+// =========================================================
+const splitCard = document.querySelector('.split-card');
 if (splitCard) {
   function isMobile() {
     return window.innerWidth <= 768;
@@ -198,7 +198,7 @@ if (splitCard) {
   splitCard.addEventListener('click', function(e) {
     if (!isMobile()) return;
 
-    // Wenn Split-Card nicht offen, dann öffnen – NICHTS weiteres tun!
+    // Split-Card ist geschlossen → nur öffnen, KEIN Feld auswählen!
     if (!splitOpen) {
       splitCard.classList.add('open-touch');
       splitOpen = true;
@@ -206,9 +206,8 @@ if (splitCard) {
       return;
     }
 
-    // Split-Card ist offen: Prüfe, ob Split-Feld geklickt wurde
+    // Split-Card ist offen: Falls Split-Feld geklickt, Navigation durchführen & Card schließen
     if (e.target.classList.contains('split-field')) {
-      // Navigiere zum Ziel
       const target = document.querySelector(e.target.getAttribute('data-target'));
       if (target) {
         const offset = (window.innerWidth <= 600) ? 0 : 220;
@@ -224,13 +223,27 @@ if (splitCard) {
       return;
     }
 
-    // Klick auf andere Bereiche der Split-Card schließt diese wieder
+    // Klick auf leeren Bereich der Card → Card schließen
     splitCard.classList.remove('open-touch');
     splitOpen = false;
     e.stopPropagation();
   });
 
-  // Klick außerhalb schließt die Split-Card
+  // Split-Feld: Navigation nur wenn Card bereits offen ist
+  document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
+    field.addEventListener('click', function(e) {
+      if (!isMobile()) return; // Desktop: Standardverhalten
+      // Wenn Card noch nicht offen, NICHTS tun
+      if (!splitCard.classList.contains('open-touch')) {
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+      // Sonst handled das der Card-Click oben bereits
+    });
+  });
+
+  // Klick außerhalb schließt die Card
   document.addEventListener('click', function(e) {
     if (isMobile() && splitOpen && !splitCard.contains(e.target)) {
       splitCard.classList.remove('open-touch');
@@ -246,6 +259,7 @@ if (splitCard) {
     }
   });
 }
+
   // =========================================================
   // SOCIAL-CARD NAVIGATION (SCROLL MIT OFFSET)
   // =========================================================
