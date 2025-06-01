@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>care-less-examensvorbereitung</title>
+  <link rel="icon" href="img/logo2.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================
+       NAVBAR
+  ========================================================= -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo-container">
+        <img src="img/logo.jpg" alt="Logo" class="logo-img">
+      </div>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/careless.exam" target="_blank" rel="noopener">
+          <img src="img/insta.png" alt="Instagram">
+        </a>
+        <a href="https://wa.me/4917676069804" target="_blank" rel="noopener">
+          <img src="img/whatsapp.png" alt="WhatsApp">
+        </a>
+        <a href="https://www.t.me/careless_exam" target="_blank" rel="noopener">
+          <img src="img/telegram.png" alt="Telegram">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO SECTION
+  ========================================================= -->
+  <section id="home" class="hero section-padding">
+    <div class="container hero-content">
+      <h1>
+        Willkommen bei Deutschlands führendem Anbieter im Bereich Examensvorbereitung für die 
+        <br>generalistische Pflegeausbildung
+      </h1>
+      <a href="#faq" class="btn btn-primary" id="hero-cta">Erfahre mehr</a>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ANGEBOTE (SOCIAL CARDS & SPLIT CARD)
+  ========================================================= -->
+  <section id="angebote" class="social-section section section-padding">
+    <div class="container">
+      <div class="cards">
+        <div class="split-card social-card">
+          <div class="main-content">
+            <div class="letter"><strong>Schriftliche</strong><br>Abschlussprüfung</div>
+            <div class="arrow">→</div>
+          </div>
+          <div class="split-content">
+            <div class="split-field" data-target="#s1">
+              <span class="split-text"><strong>I. Teil</strong></span>
+              <span class="split-arrow">→</span>
+            </div>
+            <div class="split-field" data-target="#s2">
+              <span class="split-text"><strong>II. Teil</strong></span>
+              <span class="split-arrow">→</span>
+            </div>
+            <div class="split-field" data-target="#s3">
+              <span class="split-text"><strong>III. Teil</strong></span>
+              <span class="split-arrow">→</span>
+            </div>
+          </div>
+        </div>
+        <div class="social-card" id="card-m" data-target="#m">
+          <div class="letter"><strong>Mündliche</strong><br>Abschlussprüfung</div>
+          <div class="arrow">→</div>
+        </div>
+        <div class="social-card" id="card-p" data-target="#p">
+          <div class="letter"><strong>Praktische</strong><br>Abschlussprüfung</div>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- =========================================================
+     SCHRIFTLICHE & MÜNDLICHE & PRAKTISCHE ABSCHLUSSPRÜFUNGEN (EINZELBLOCKS)
+========================================================= -->
+<section id="s1" class="section s-block section-padding">
+  <div class="container">
+    <div class="content">
+      <h2>Erste Schriftliche Abschlussprüfung</h2>
+      <ul>
+        <li>prüfungsrelevante Vorbereitung in den Kompetenzbereichen <strong>I.1, I.5, I.6, II.1</strong> und <strong>IV.</strong></li>
+        <li><strong>authentische Prüfungsaufgaben</strong></li>
+        <li>Prüfungen mit allen relevanten Kontexten <strong>(akut- und langzeitstationär, ambulant)</strong> und allen relevanten Altersstufen <strong>(pädiatrisch, geriatrisch, erwachsen)</strong></li>
+      </ul>
+    </div>
+    <div class="beratung-actions">
+      <a href="#kontakt" class="beratung-btn einzelberatung-btn">Einzelberatung</a>
+      <a href="#sprechstundentermine" class="beratung-btn sprechstunde-btn" data-open-feld="1">Sprechstunde</a>
+    </div>
+  </div>
+</section>
+
+<section id="s2" class="section s-block reverse section-padding">
+  <div class="container">
+    <div class="beratung-actions">
+      <a href="#kontakt" class="beratung-btn einzelberatung-btn">Einzelberatung</a>
+      <a href="#sprechstundentermine" class="beratung-btn sprechstunde-btn" data-open-feld="2">Sprechstunde</a>
+    </div>
+    <div class="content">
+      <h2>Zweite Schriftliche Abschlussprüfung</h2>
+      <!-- Desktop-Version (bullet-right) -->
+      <div class="desktop-list">
+        <p class="bullet-right">prüfungsrelevante Vorbereitung in den Kompetenzbereichen <strong>I.2, II.2</strong> und <strong>V.1</strong></p>
+        <p class="bullet-right"><strong>authentische Prüfungsaufgaben</strong></p>
+        <p class="bullet-right">Prüfungen mit allen relevanten Kontexten <strong>(akut- und langzeitstationär, ambulant)</strong> und allen relevanten Altersstufen <strong>(pädiatrisch, geriatrisch, erwachsen)</strong></p>
+      </div>
+      <!-- Mobile-Version (Liste) -->
+      <ul class="mobile-list">
+        <li>prüfungsrelevante Vorbereitung in den Kompetenzbereichen <strong>I.2, II.2</strong> und <strong>V.1</strong></li>
+        <li><strong>authentische Prüfungsaufgaben</strong></li>
+        <li>Prüfungen mit allen relevanten Kontexten <strong>(akut- und langzeitstationär, ambulant)</strong> und allen relevanten Altersstufen <strong>(pädiatrisch, geriatrisch, erwachsen)</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="s3" class="section s-block section-padding">
+  <div class="container">
+    <div class="content">
+      <h2>Dritte Schriftliche Abschlussprüfung</h2>
+      <ul>
+        <li>prüfungsrelevante Vorbereitung in den Kompetenzbereichen <strong>I.3, I.4, II.3</strong> und <strong>III.2</strong></li>
+        <li><strong>authentische Prüfungsaufgaben</strong></li>
+        <li>Prüfungen mit allen relevanten Kontexten <strong>(akut- und langzeitstationär, ambulant)</strong> und allen relevanten Altersstufen <strong>(pädiatrisch, geriatrisch, erwachsen)</strong></li>
+      </ul>
+    </div>
+    <div class="beratung-actions">
+      <a href="#kontakt" class="beratung-btn einzelberatung-btn">Einzelberatung</a>
+      <a href="#sprechstundentermine" class="beratung-btn sprechstunde-btn" data-open-feld="3">Sprechstunde</a>
+    </div>
+  </div>
+</section>
+
+<section id="m" class="section s-block reverse section-padding">
+  <div class="container">
+    <div class="beratung-actions">
+      <a href="#kontakt" class="beratung-btn einzelberatung-btn">Einzelberatung</a>
+      <a href="#sprechstundentermine" class="beratung-btn sprechstunde-btn" data-open-feld="4">Sprechstunde</a>
+    </div>
+    <div class="content">
+      <h2>Mündliche Abschlussprüfung</h2>
+      <!-- Desktop-Version (bullet-right) -->
+      <div class="desktop-list">
+        <p class="bullet-right">prüfungsrelevante Vorbereitung in den Kompetenzbereichen <strong>III, IV</strong> und <strong>V</strong></p>
+        <p class="bullet-right"><strong>authentische Prüfungsaufgaben</strong></p>
+        <p class="bullet-right">Prüfungen mit allen relevanten Kontexten <strong>(akut- und langzeitstationär, ambulant)</strong> und allen relevanten Altersstufen <strong>(pädiatrisch, geriatrisch, erwachsen)</strong></p>
+        <p class="bullet-right">Blick hinter die Kulissen mit <strong>authentischem Erwartungshorizont</strong></p>
+      </div>
+      <!-- Mobile-Version (Liste) -->
+      <ul class="mobile-list">
+        <li>prüfungsrelevante Vorbereitung in den Kompetenzbereichen <strong>III, IV</strong> und <strong>V</strong></li>
+        <li><strong>authentische Prüfungsaufgaben</strong></li>
+        <li>Prüfungen mit allen relevanten Kontexten <strong>(akut- und langzeitstationär, ambulant)</strong> und allen relevanten Altersstufen <strong>(pädiatrisch, geriatrisch, erwachsen)</strong></li>
+        <li>Sehen, was genau gefordert wird mit <strong>authentischem Erwartungshorizont</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section id="p" class="section s-block section-padding">
+  <div class="container">
+    <div class="content">
+      <h2>Praktische Abschlussprüfung</h2>
+      <ul>
+        <li>praxisnahe Vorbereitung in <strong>allen Kompetenzbereichen</strong></li>
+      </ul>
+    </div>
+    <div class="beratung-actions">
+      <a href="#kontakt" class="beratung-btn einzelberatung-btn">Einzelberatung</a>
+      <a href="#sprechstundentermine" class="beratung-btn sprechstunde-btn" data-open-feld="5">Sprechstunde</a>
+    </div>
+  </div>
+</section>
+  <!-- =========================================================
+       FAQ
+  ========================================================= -->
+  <section id="faq" class="section faq section-padding">
+  <div class="container">
+    <h2 class="faq-title">Häufig gestellte Fragen</h2>
+    <div class="faq-item">
+      <button class="faq-question">Wie läuft eine Sprechstunde ab?</button>
+      <div class="faq-answer">
+        <p>Die Sprechstunde ist ein Gruppenformat, bei dem maximal 5 Personen gleichzeitig teilnehmen können.</p>
+        <p>Der Termin findet in der Regel über Zoom oder Teams statt.</p>
+        <p>Der Tutor wird dort je nach Termin eine der 5 Abschlussprüfungen im Detail besprechen.</p>
+        <p>Dabei werdet ihr exemplarisch authentische Examina durchgehen und lernen worauf es wirklich ankommt.</p>
+        <p>Vorher kannst Du uns auch den Stichwortkatalog, den Du von Deiner Schule erhalten hast zukommen lassen, wir werden dann versuchen, passende Examina auszuwählen.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Was kostet eine Sprechstunde?</button>
+      <div class="faq-answer">
+        <p><a href="#preise" class="preise-link" data-preise-feld="1">Preise</a></p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Wie läuft eine Einzelstunde ab?</button>
+      <div class="faq-answer">
+        <p>Wir klären in der Vorab-Kommuniktion ab, auf welche Abschlussprüfung Du Dich vorbereiten willst.</p>
+        <p>Wir einigen uns dann auf einen Termin, der in der Regel per Zoom oder Teams stattfinden wird.</p>
+        <p>Die Stundengestaltung verläuft recht individuell.</p>
+        <p>Der Tutor kann Dir entsprechend deiner Ziele anhand passender Examensaufgabe vermitteln, wie Du bestehen kannst oder aber ihr macht ein Prüfungsgespräch im Sinne eine mündlichen Abschlussprüfung gemeinsam.</p>
+        <p>Du kannst aber auch jede Fragen stellen, dir Dir so einfällt.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Was kostet eine Einzelstunde?</button>
+      <div class="faq-answer">
+        <p><a href="#preise" class="preise-link" data-preise-feld="2">Preise</a></p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Gebt ihr auch Nachhilfe?</button>
+      <div class="faq-answer">
+        <p>Unsere Kernkompetenz ist zwar die Examensvorbereitung, natürlich sind wir jedoch auch in der Lage spezifische Themen im Rahmen der generalistischen Pflegeausbildung in Form von Nachhilfe aufzubereiten und anzubieten.</p>
+        <p>In einer Vorab-Kommunikation klären wir im Detail ab, ob diese Themen in unserem Kompetenzbereich liegen.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Wie läuft Nachhilfe ab?</button>
+      <div class="faq-answer">
+        <p>Wir klären im Vorgespräch ab, welche Themen Du besprechen möchstest und auf welche Prüfungsleistung Du Dich vorbereiten möchtest.</p>
+        <p>Wir einigen uns dann auf einen Termin, der in der Regel per Zoom oder Teams stattfinden wird.</p>
+        <p>Die Stundengestaltung verläuft recht individuell.</p>
+        <p>Die Themen werden vorab durch den Tutor vorbereitet und Du erhälst zum Schluss auch ein Handout.</p>
+        <p>Du kannst deine Zeit auch nutzen und jede Frage stellen, die Dir so einfällt.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Was kostet Nachhilfe?</button>
+      <div class="faq-answer">
+        <p><a href="#preise" class="preise-link" data-preise-feld="2">Preise</a></p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Wie melde ich mich an?</button>
+      <div class="faq-answer">
+        <p>Per E-Mail, WhatsApp oder Telegram.</p>
+        <p>Wenn Du an einer Sprechstunde teilnehmen möchtest, sieh Dir die Termine an und schreibe in die Nachricht eben diesen und eventuelle Themen.</p>
+        <p>Wir melden uns dann zeitnah bei Dir.</p>
+        <p>Möchtest Du einen Einzeltermin, klären wir in der Vorab-Kommunikation ab, wie wir dir genau helfen können.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- =========================================================
+     SPRECHSTUNDENTERMINE
+========================================================= -->
+<section id="sprechstundentermine" class="section appointments section-padding">
+  <div class="container">
+    <h2>Sprechstundentermine</h2>
+    <div class="appointment-cards">
+      <div class="appointment-card">
+        <h3>1. Schriftliche Prüfung</h3>
+        <ul class="details">
+          <li>02.06.2025, 18 Uhr</li>
+          <li>23.06.2025, 18 Uhr</li>
+          <li>14.07.2025, 18 Uhr</li>
+        </ul>
+      </div>
+      <div class="appointment-card">
+        <h3>2. Schriftliche Prüfung</h3>
+        <ul class="details">
+          <li>09.06.2025, 18 Uhr</li>
+          <li>30.06.2025, 18 Uhr</li>
+          <li>21.07.2025, 18 Uhr</li>
+        </ul>
+      </div>
+      <div class="appointment-card">
+        <h3>3. Schriftliche Prüfung</h3>
+        <ul class="details">
+          <li>16.06.2025, 18 Uhr</li>
+          <li>07.07.2025, 18 Uhr</li>
+          <li>28.07.2025, 18 Uhr</li>
+        </ul>
+      </div>
+      <div class="appointment-card">
+        <h3>Mündliche Prüfung</h3>
+        <ul class="details">
+          <li>03.06.2025, 18 Uhr</li>
+          <li>10.06.2025, 18 Uhr</li>
+          <li>17.06.2025, 18 Uhr</li>
+        </ul>
+      </div>
+      <div class="appointment-card">
+        <h3>Praktische Prüfung</h3>
+        <ul class="details">
+          <li>06.06.2025, 18 Uhr</li>
+          <li>13.06.2025, 18 Uhr</li>
+          <li>20.06.2025, 18 Uhr</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- =========================================================
+       PREISE
+  ========================================================= -->
+  <section id="preise" class="section section-padding">
+    <div class="container">
+      <h2 class="preise-title">Preise</h2>
+      <div class="preise-cards-row">
+        <div class="preise-card">
+          <h3>Sprechstunden</h3>
+          <div class="preise-details">
+            <li><strong>15 €</strong> pro 60 Min, Gruppentermin</li>
+            <li>Werbe einen weiteren Teilnehmer und beide zahlen nur <strong>12 €</strong></li>
+          </div>
+        </div>
+        <div class="preise-card">
+          <h3>Einzeltermin</h3>
+          <div class="preise-details">
+            <li><strong>45 €</strong> pro 60 Min, Einzelgespräch</li>
+            <li>bei Buchung mehrer Termine bis zu <strong>20%</strong> Rabatt</li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       KONTAKT
+  ========================================================= -->
+  <section id="kontakt" class="section kontakt-section section-padding">
+    <div class="container">
+      <h2 class="kontakt-title">Kontakt</h2>
+      <div class="kontakt-cards-grid">
+        <button class="kontakt-card kontakt-action-card" type="button" onclick="window.location.href='mailto:careless.exam@gmail.com'">
+          <div class="kontakt-card-icon">
+            <img src="img/email.png" alt="E-Mail" width="40" height="40">
+          </div>
+          <div class="kontakt-card-title">E-Mail</div>
+          <div class="kontakt-card-info">careless.exam@gmail.com</div>
+        </button>
+        <button class="kontakt-card kontakt-action-card" type="button" onclick="window.open('https://www.instagram.com/careless.exam', '_blank')">
+          <div class="kontakt-card-icon">
+            <img src="img/insta.png" alt="Instagram" width="40" height="40">
+          </div>
+          <div class="kontakt-card-title">Instagram</div>
+          <div class="kontakt-card-info">@careless.exam</div>
+        </button>
+        <button class="kontakt-card kontakt-action-card" type="button" onclick="window.open('https://wa.me/4917676069804', '_blank')">
+          <div class="kontakt-card-icon">
+            <img src="img/whatsapp.png" alt="WhatsApp" width="40" height="40">
+          </div>
+          <div class="kontakt-card-title">WhatsApp</div>
+          <div class="kontakt-card-info">Jetzt schreiben</div>
+        </button>
+        <button class="kontakt-card kontakt-action-card" type="button" onclick="window.open('https://www.t.me/careless_exam', '_blank')">
+          <div class="kontakt-card-icon">
+            <img src="img/telegram.png" alt="Telegram" width="40" height="40">
+          </div>
+          <div class="kontakt-card-title">Telegram</div>
+          <div class="kontakt-card-info">Jetzt schreiben</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 CareLess. Alle Rechte vorbehalten.</p>
+      <p>
+        <a href="#" id="datenschutzImpressumBtn">Datenschutz &amp; Impressum</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       SCROLL TO TOP BUTTON
+  ========================================================= -->
+  <button id="scrollToTopBtn" aria-label="Nach oben scrollen">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="15" stroke="#9ca6ac" stroke-width="2" fill="#fff"/>
+      <polyline points="10,19 16,13 22,19" fill="none" stroke="#333b3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- =========================================================
+       DATENSCHUTZ & IMPRESSUM
+  ========================================================= -->
+  <section id="datenschutz-impressum" class="section datenschutz-impressum-section section-padding">
+    <div class="container">
+      <div class="datenschutz-card card">
+  <h2>Datenschutzerklärung</h2>
+
+  <h3>1. Einleitung</h3>
+  <p>
+    Wir, CareLess, nehmen den Schutz persönlicher Daten ernst. Diese Datenschutzerklärung informiert über Erhebung, Verwendung und Rechte bezüglich personenbezogener Daten.
+  </p>
+
+  <h3>2. Verantwortlicher</h3>
+  <p>
+    siehe Impressum
+  </p>
+
+  <h3>3. Erhobene Daten</h3>
+  <p>Es werden folgende personenbezogene Daten erhoben und verarbeitet:</p>
+  <ul>
+    <li>Kontaktdaten (Name, Adresse, E-Mail-Adresse, Telefonnummer)</li>
+    <li>Angaben zur Examensvorbereitung (Ausbildungsstand, Lernziele, konkrete Lerninhalte der entsprechenden Pflegeschule)</li>
+    <li>Kommunikationsdaten (E-Mails, Schriftverkehr)</li>
+  </ul>
+
+  <h3>4. Zweck der Datenverarbeitung</h3>
+  <p>Die Daten werden zu folgenden Zwecken verarbeitet:</p>
+  <ul>
+    <li>Durchführung und Optimierung der Beratungsleistungen</li>
+    <li>Kommunikation</li>
+    <li>Erfüllung gesetzlicher Vorgaben</li>
+  </ul>
+
+  <h3>5. Rechtsgrundlage der Verarbeitung</h3>
+  <p>Die Verarbeitung erfolgt auf Basis folgender Rechtsgrundlagen:</p>
+  <ul>
+    <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</li>
+    <li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</li>
+    <li>Art. 6 Abs. 1 lit. c DSGVO (gesetzliche Verpflichtung)</li>
+    <li>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</li>
+  </ul>
+
+  <h3>6. Weitergabe von Daten</h3>
+  <p>
+    Eine Weitergabe erfolgt nur, wenn dies zur Vertragserfüllung notwendig ist, eine gesetzliche Verpflichtung besteht oder eine ausdrückliche Einwilligung vorliegt.
+  </p>
+
+  <h3>7. Aufbewahrungsdauer</h3>
+  <p>
+    Die Daten werden so lange gespeichert, wie es für die Erfüllung der genannten Zwecke oder gesetzlicher Aufbewahrungspflichten erforderlich ist.
+  </p>
+
+  <h3>8. Ihre Rechte</h3>
+  <p>Es besteht das Recht auf:</p>
+  <ul>
+    <li>Auskunft über gespeicherte Daten (Art. 15 DSGVO)</li>
+    <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+    <li>Löschung der Daten (Art. 17 DSGVO)</li>
+    <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+    <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+    <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+  </ul>
+
+  <h3>9. Widerrufsrecht bei Einwilligungen</h3>
+  <p>
+    Erteilte Einwilligungen können jederzeit mit Wirkung für die Zukunft widerrufen werden.
+  </p>
+
+  <h3>10. Kontakt bei Datenschutzfragen</h3>
+  <p>
+    Bei Datenschutzfragen wendet sich der Ansprechpartner an den Datenschutzbeauftragten: siehe Impressum.
+  </p>
+
+  <h3>11. Änderungen der Datenschutzerklärung</h3>
+  <p>
+    Die Datenschutzerklärung kann bei Bedarf angepasst werden. Die aktuelle Version wird auf der Website veröffentlicht.
+  </p>
+
+  <h3>Haftung für Links</h3>
+  <p>
+    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.
+  </p>
+  <p>
+    Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+  </p>
+</div>
+      <div class="impressum-card card">
+        <h2>Impressum</h2>
+        <img src="img/impressum.png" alt="Impressum" class="impressum-img">
+      </div>
+    </div>
+  </section>
+  
+<!-- SCROLL DOWN BUTTON -->
+<button id="scrollDownBtn" aria-label="Nach unten scrollen">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+    <circle cx="16" cy="16" r="15" stroke="#9ca6ac" stroke-width="2" fill="#fff"/>
+    <polyline points="10,13 16,19 22,13" fill="none" stroke="#333b3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+</body>
+</html>
