@@ -193,44 +193,49 @@ if (splitCard) {
     });
   });
 
-  // MOBIL: Split-Card Klick-Logik
+  // MOBIL: Split-Card Klick-Logik (nur für das Öffnen und Schließen!)
   splitCard.addEventListener('click', function(e) {
     if (!isMobile()) return;
 
-    // Card ist ZU: Öffnen und Ende (es wird nichts weiteres gemacht)
+    // Wenn Card geschlossen: öffnen (egal wo geklickt)
     if (!splitCard.classList.contains('open-touch')) {
       splitCard.classList.add('open-touch');
       splitOpen = true;
-      // Nur bei geschlossenem Zustand das Event abfangen!
       e.preventDefault();
       e.stopPropagation();
       return;
     }
 
-    // Card ist OFFEN: Prüfen ob Split-Feld geklickt wurde
-    if (e.target.classList.contains('split-field')) {
-      // Jetzt Auswahl, Scroll und Schließen
-      const target = document.querySelector(e.target.getAttribute('data-target'));
-      if (target) {
-        const offset = (window.innerWidth <= 600) ? 0 : 220;
-        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: "smooth"
-        });
-      }
+    // Wenn Card offen: Klicken außerhalb der Split-Felder schließt sie, Klick auf Split-Feld handled das Feld selbst!
+    if (!e.target.classList.contains('split-field')) {
       splitCard.classList.remove('open-touch');
       splitOpen = false;
       e.preventDefault();
       e.stopPropagation();
       return;
     }
+    // Split-Feld-Click handled NICHTS mehr hier!
+  });
 
-    // Card ist offen, aber es wurde NICHT auf ein Feld getippt (z.B. aufs Overlay): Schließen
-    splitCard.classList.remove('open-touch');
-    splitOpen = false;
-    e.preventDefault();
-    e.stopPropagation();
+  // Split-Feld-Click: Mobil (wenn Card offen)
+  document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
+    field.addEventListener('click', function(e) {
+      if (isMobile() && splitCard.classList.contains('open-touch')) {
+        const target = document.querySelector(field.getAttribute('data-target'));
+        if (target) {
+          const offset = (window.innerWidth <= 600) ? 0 : 220;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: "smooth"
+          });
+        }
+        splitCard.classList.remove('open-touch');
+        splitOpen = false;
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
   });
 
   // Klick außerhalb schließt die Split-Card (Mobil)
@@ -249,6 +254,7 @@ if (splitCard) {
     }
   });
 }
+
 
 
   // =========================================================
