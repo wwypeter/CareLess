@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-// =========================================================
+ // =========================================================
 // SPLIT-CARD: KLICK STATT HOVER IN DER MOBILANSICHT
 // =========================================================
 const splitCard = document.querySelector('.split-card');
@@ -194,22 +194,19 @@ if (splitCard) {
   }
   let splitOpen = false;
 
-  // Split-Card Haupt-Click
   splitCard.addEventListener('click', function(e) {
     if (!isMobile()) return;
 
-    // Prüfen, ob ein Split-Feld angeklickt wurde
+    // Wenn ein Split-Feld geklickt wurde
     if (e.target.classList.contains('split-field')) {
       if (!splitOpen) {
-        // Card erst öffnen, KEIN Scroll!
+        // Erst öffnen, KEIN Scroll!
         splitCard.classList.add('open-touch');
         splitOpen = true;
-        // Verhindert, dass das Feld sofort handled!
-        e.stopPropagation();
         e.preventDefault();
         return;
       } else {
-        // Card ist offen → jetzt Navigation und Card schließen
+        // Jetzt Auswahl und schließen
         const target = document.querySelector(e.target.getAttribute('data-target'));
         if (target) {
           const offset = (window.innerWidth <= 600) ? 0 : 220;
@@ -221,37 +218,23 @@ if (splitCard) {
         }
         splitCard.classList.remove('open-touch');
         splitOpen = false;
-        e.stopPropagation();
-        e.preventDefault();
-        return;
-      }
-    } else {
-      // Klick auf freien Bereich
-      if (!splitOpen) {
-        splitCard.classList.add('open-touch');
-        splitOpen = true;
-        e.stopPropagation();
-        e.preventDefault();
-        return;
-      } else {
-        splitCard.classList.remove('open-touch');
-        splitOpen = false;
-        e.stopPropagation();
         e.preventDefault();
         return;
       }
     }
-  });
 
-  // Split-Feld: Click direkt abfangen, damit keine doppelte Logik ausgelöst wird
-  document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
-    field.addEventListener('click', function(e) {
-      if (!isMobile()) return; // Desktop: Standardverhalten
-      // Alles weitere handled der Card-Click-Handler oben!
-      e.stopPropagation();
+    // Wenn auf einen anderen Bereich der Card getippt wurde
+    if (!splitOpen) {
+      splitCard.classList.add('open-touch');
+      splitOpen = true;
       e.preventDefault();
-      return false;
-    });
+      return;
+    } else {
+      splitCard.classList.remove('open-touch');
+      splitOpen = false;
+      e.preventDefault();
+      return;
+    }
   });
 
   // Klick außerhalb schließt die Card
@@ -270,6 +253,8 @@ if (splitCard) {
     }
   });
 }
+
+
 
   // =========================================================
   // SOCIAL-CARD NAVIGATION (SCROLL MIT OFFSET)
