@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =========================================================
+// =========================================================
 // SPLIT-CARD: KLICK STATT HOVER IN DER MOBILANSICHT
 // =========================================================
 const splitCard = document.querySelector('.split-card');
@@ -192,54 +192,65 @@ if (splitCard) {
   function isMobile() {
     return window.innerWidth <= 768;
   }
-
   let splitOpen = false;
 
+  // Split-Card Haupt-Click
   splitCard.addEventListener('click', function(e) {
     if (!isMobile()) return;
 
-    // Split-Card ist geschlossen → nur öffnen, KEIN Feld auswählen!
-    if (!splitOpen) {
-      splitCard.classList.add('open-touch');
-      splitOpen = true;
-      e.stopPropagation();
-      return;
-    }
-
-    // Split-Card ist offen: Falls Split-Feld geklickt, Navigation durchführen & Card schließen
+    // Prüfen, ob ein Split-Feld angeklickt wurde
     if (e.target.classList.contains('split-field')) {
-      const target = document.querySelector(e.target.getAttribute('data-target'));
-      if (target) {
-        const offset = (window.innerWidth <= 600) ? 0 : 220;
-        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: "smooth"
-        });
-      }
-      splitCard.classList.remove('open-touch');
-      splitOpen = false;
-      e.stopPropagation();
-      return;
-    }
-
-    // Klick auf leeren Bereich der Card → Card schließen
-    splitCard.classList.remove('open-touch');
-    splitOpen = false;
-    e.stopPropagation();
-  });
-
-  // Split-Feld: Navigation nur wenn Card bereits offen ist
-  document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
-    field.addEventListener('click', function(e) {
-      if (!isMobile()) return; // Desktop: Standardverhalten
-      // Wenn Card noch nicht offen, NICHTS tun
-      if (!splitCard.classList.contains('open-touch')) {
+      if (!splitOpen) {
+        // Card erst öffnen, KEIN Scroll!
+        splitCard.classList.add('open-touch');
+        splitOpen = true;
+        // Verhindert, dass das Feld sofort handled!
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      } else {
+        // Card ist offen → jetzt Navigation und Card schließen
+        const target = document.querySelector(e.target.getAttribute('data-target'));
+        if (target) {
+          const offset = (window.innerWidth <= 600) ? 0 : 220;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: "smooth"
+          });
+        }
+        splitCard.classList.remove('open-touch');
+        splitOpen = false;
         e.stopPropagation();
         e.preventDefault();
         return;
       }
-      // Sonst handled das der Card-Click oben bereits
+    } else {
+      // Klick auf freien Bereich
+      if (!splitOpen) {
+        splitCard.classList.add('open-touch');
+        splitOpen = true;
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      } else {
+        splitCard.classList.remove('open-touch');
+        splitOpen = false;
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+    }
+  });
+
+  // Split-Feld: Click direkt abfangen, damit keine doppelte Logik ausgelöst wird
+  document.querySelectorAll('.split-card .split-content .split-field').forEach(field => {
+    field.addEventListener('click', function(e) {
+      if (!isMobile()) return; // Desktop: Standardverhalten
+      // Alles weitere handled der Card-Click-Handler oben!
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
     });
   });
 
