@@ -1511,6 +1511,33 @@ body {
     line-height: 1;
   }
 }
-
+@media (max-width: 600px) {
+  .appointment-card h3,
+  .preise-card h3 {
+    text-align: center !important;
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .appointment-card .details {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .appointment-card .details li {
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
 
 
