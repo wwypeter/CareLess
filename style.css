@@ -1494,8 +1494,15 @@ body {
     padding: 0 2px;      /* mehr Platz links/rechts */
   }
 }
-.beratung-btn {
-  min-width: 80vw !important;
+@media (max-width: 700px) {
+  .beratung-btn {
+    width: calc(100% - 32px);   /* oder ein anderer Wert */
+    margin-left: 16px;
+    margin-right: 16px;
+    max-width: none;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
 
 
