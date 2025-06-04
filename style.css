@@ -1129,11 +1129,6 @@ body {
 @media (max-width: 768px) {
   .mobile-list { display: block; }
   .desktop-list { display: none; }
-}@media (max-width: 600px) {
-  body {
-    position: relative;
-    left: -8px; /* Wert kann angepasst werden, z. B. -6px, -10px */
-  }
 }
 @media (max-width: 600px) {
   #s1.section,
