@@ -359,18 +359,25 @@ if (splitCard) {
   // DATENSCHUTZ & IMPRESSUM ANZEIGEN / SCROLLEN
   // =========================================================
   const dsiBtn = document.getElementById('datenschutzImpressumBtn');
-  const dsiSection = document.getElementById('datenschutz-impressum');
-  if (dsiBtn && dsiSection) {
-    dsiBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (!dsiSection.classList.contains('visible')) {
-        dsiSection.classList.add('visible');
-        dsiSection.scrollIntoView({ behavior: "smooth", block: "start" });
+const dsiSection = document.getElementById('datenschutz-impressum');
+if (dsiBtn && dsiSection) {
+  dsiBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (!dsiSection.classList.contains('visible')) {
+      dsiSection.classList.add('visible');
+      // NEU: nicht die Section, sondern die Karte scrollen
+      const card = dsiSection.querySelector('.datenschutz-card, .impressum-card');
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
-        dsiSection.classList.remove('visible');
+        dsiSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    });
-  }
+    } else {
+      dsiSection.classList.remove('visible');
+    }
+  });
+}
+
 
   // =========================================================
   // HEADER AUTO-HIDE wie auf der alten Website: ein-/ausblenden beim Scrollen
