@@ -1491,11 +1491,26 @@ body {
   #p .beratung-btn {
     height: 52px;         /* z.B. 52px, passe gern an */
     font-size: 1.20rem;   /* etwas größer */
-    width: 98%;
     padding: 0 2px;      /* mehr Platz links/rechts */
   }
 }
-
+@media (max-width: 700px) {
+  .preise-details li {
+    list-style: none;
+    position: relative;
+    padding-left: 1.4em;
+    text-indent: 0;
+  }
+  .preise-details li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    top: 0.3em;
+    color: #333b3d;
+    font-size: 0.9em;
+    line-height: 1;
+  }
+}
 
 
 
