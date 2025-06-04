@@ -1504,6 +1504,11 @@ body {
     box-sizing: border-box;
   }
 }
+@media (max-width: 600px) {
+  #datenschutz-impressum.visible {
+    animation: none !important;
+  }
+}
 
 
 
