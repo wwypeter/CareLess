@@ -359,25 +359,18 @@ if (splitCard) {
   // DATENSCHUTZ & IMPRESSUM ANZEIGEN / SCROLLEN
   // =========================================================
   const dsiBtn = document.getElementById('datenschutzImpressumBtn');
-const dsiSection = document.getElementById('datenschutz-impressum');
-if (dsiBtn && dsiSection) {
-  dsiBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (!dsiSection.classList.contains('visible')) {
-      dsiSection.classList.add('visible');
-      // NEU: nicht die Section, sondern die Karte scrollen
-      const card = dsiSection.querySelector('.datenschutz-card, .impressum-card');
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
+  const dsiSection = document.getElementById('datenschutz-impressum');
+  if (dsiBtn && dsiSection) {
+    dsiBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (!dsiSection.classList.contains('visible')) {
+        dsiSection.classList.add('visible');
         dsiSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        dsiSection.classList.remove('visible');
       }
-    } else {
-      dsiSection.classList.remove('visible');
-    }
-  });
-}
-
+    });
+  }
 
   // =========================================================
   // HEADER AUTO-HIDE wie auf der alten Website: ein-/ausblenden beim Scrollen
@@ -495,3 +488,95 @@ if (dsiBtn && dsiSection) {
   updateScrollDownBtnVisibility();
 
 });
+
+
+
+
+
+// =========================================================
+// DATUM-SPRECHSTUNDE: finde das nächste Datum für einen bestimmten Wochentag
+// =========================================================
+
+// Manuell pflegbare Liste ausgeschlossener Termine (Format: "YYYY-MM-DD")
+const ausgeschlosseneTermine = [
+  "2024-06-10",
+  "2024-07-01"
+];
+
+function istAusgeschlossen(date) {
+    const iso = date.toISOString().slice(0,10);
+    return ausgeschlosseneTermine.includes(iso);
+}
+
+// Hilfsfunktion: finde das nächste Datum für einen bestimmten Wochentag
+function getNextWeekday(date, weekday) {
+    const d = new Date(date);
+    d.setDate(d.getDate() + ((7 + weekday - d.getDay()) % 7));
+    return d;
+}
+
+// Hilfsfunktion: formatiert ein Datum wie "02.06.2025, 18 Uhr"
+function formatDateTime(date, time = "18 Uhr") {
+    return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ", " + time;
+}
+
+function fillAppointments() {
+    const today = new Date();
+
+    // s1: Dienstag, alle 3 Wochen
+    const s1 = [];
+    let s1Date = getNextWeekday(today, 2); // 2 = Dienstag
+    while (s1.length < 3) {
+        if (!istAusgeschlossen(s1Date)) s1.push(formatDateTime(s1Date));
+        s1Date = new Date(s1Date.getTime());
+        s1Date.setDate(s1Date.getDate() + 21);
+    }
+
+    // s2: Dienstag, alle 3 Wochen, immer eine Woche nach s1
+    const s2 = [];
+    let s2Date = getNextWeekday(today, 2);
+    s2Date.setDate(s2Date.getDate() + 7);
+    while (s2.length < 3) {
+        if (!istAusgeschlossen(s2Date)) s2.push(formatDateTime(s2Date));
+        s2Date = new Date(s2Date.getTime());
+        s2Date.setDate(s2Date.getDate() + 21);
+    }
+
+    // s3: Dienstag, alle 3 Wochen, immer eine Woche nach s2
+    const s3 = [];
+    let s3Date = getNextWeekday(today, 2);
+    s3Date.setDate(s3Date.getDate() + 14);
+    while (s3.length < 3) {
+        if (!istAusgeschlossen(s3Date)) s3.push(formatDateTime(s3Date));
+        s3Date = new Date(s3Date.getTime());
+        s3Date.setDate(s3Date.getDate() + 21);
+    }
+
+    // m: Mittwoch, jede Woche
+    const m = [];
+    let mDate = getNextWeekday(today, 3); // 3 = Mittwoch
+    while (m.length < 3) {
+        if (!istAusgeschlossen(mDate)) m.push(formatDateTime(mDate));
+        mDate = new Date(mDate.getTime());
+        mDate.setDate(mDate.getDate() + 7);
+    }
+
+    // p: Donnerstag, jede Woche
+    const p = [];
+    let pDate = getNextWeekday(today, 4); // 4 = Donnerstag
+    while (p.length < 3) {
+        if (!istAusgeschlossen(pDate)) p.push(formatDateTime(pDate));
+        pDate = new Date(pDate.getTime());
+        pDate.setDate(pDate.getDate() + 7);
+    }
+
+    // In die Seite eintragen
+    document.getElementById('termine-s1').innerHTML = s1.map(t => `<li>${t}</li>`).join('');
+    document.getElementById('termine-s2').innerHTML = s2.map(t => `<li>${t}</li>`).join('');
+    document.getElementById('termine-s3').innerHTML = s3.map(t => `<li>${t}</li>`).join('');
+    document.getElementById('termine-m').innerHTML  = m.map(t => `<li>${t}</li>`).join('');
+    document.getElementById('termine-p').innerHTML  = p.map(t => `<li>${t}</li>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded', fillAppointments);
+
