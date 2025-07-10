@@ -1131,6 +1131,13 @@ body {
   .desktop-list { display: none; }
 }
 @media (max-width: 600px) {
+  body {
+    position: relative;
+    left: -8px; 
+  }
+}
+
+@media (max-width: 600px) {
   #s1.section,
   #s2.section,
   #s3.section,
@@ -1375,27 +1382,19 @@ body {
     inset: 0;
     background: transparent;
     transition: opacity 0.12s, transform 0.12s;
-    z-index: 10;
   }
   .split-card.open-touch .main-content {
     opacity: 0;
     pointer-events: none;
-    z-index: 0;
-    transition: opacity 0.1s;
   }
   .split-card.open-touch .split-content {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0) scale(1);
-    z-index: 11;
+    z-index: 2;
     transition-delay: 0s;
   }
-  .split-card .split-content .split-field {
-    position: relative;
-    z-index: 12;
-  }
 }
-
 
 @media (max-width: 600px) {
   .appointment-card .details,
@@ -1539,5 +1538,22 @@ body {
     box-sizing: border-box !important;
   }
 }
+/* am Ende von style.css oder im Abschnitt #kontakt */
+#kontakt {
+  scroll-margin-top: 200px;
+}
+/* Pseudo‑Element sorgt für 50px Versatz beim Scrollen */
+#kontakt::before {
+  content: '';
+  display: block;
+  height: 50px;      /* gewünschte Scroll‑Tiefe */
+  margin-top: -50px; /* zieht das Element nach oben */
+  visibility: hidden;
+}
+
+
+
+
+
 
 
