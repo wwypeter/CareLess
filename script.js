@@ -125,26 +125,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // SPRECHSTUNDE-BUTTON: TERMINKARTE ÖFFNEN MIT AUTO-CLOSE
   // =========================================================
   document.querySelectorAll('.sprechstunde-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const section = document.getElementById('sprechstundentermine');
-      if (section) section.scrollIntoView({ behavior: "smooth" });
-      closeAllCards(appointmentCards);
-      const feldNummer = btn.getAttribute('data-open-feld');
-      if (feldNummer) {
-        const card = appointmentCards[parseInt(feldNummer, 10) - 1];
-        if (card) {
-          setTimeout(() => {
-            card.classList.add('open');
-            if (card._autoCloseTimeout) clearTimeout(card._autoCloseTimeout);
-            card._autoCloseTimeout = setTimeout(() => {
-              card.classList.remove('open');
-            }, 2000);
-          }, 350);
-        }
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    const section = document.getElementById('sprechstundentermine');
+    if (section) section.scrollIntoView({ behavior: "smooth" });
+
+    // Termin-Karte schließen
+    closeAllCards(appointmentCards);
+
+    // Preiskarte Sprechstunden öffnen
+    closeAllCards(preiseCards);
+    const preisCard = preiseCards[0]; // erste Karte = Sprechstunden-Preise
+    if (preisCard) {
+      setTimeout(() => {
+        preisCard.classList.add('open');
+        if (preisCard._autoCloseTimeout) clearTimeout(preisCard._autoCloseTimeout);
+        preisCard._autoCloseTimeout = setTimeout(() => {
+          preisCard.classList.remove('open');
+        }, 2000);
+      }, 350);
+    }
+
+    const feldNummer = btn.getAttribute('data-open-feld');
+    if (feldNummer) {
+      const card = appointmentCards[parseInt(feldNummer, 10) - 1];
+      if (card) {
+        setTimeout(() => {
+          card.classList.add('open');
+          if (card._autoCloseTimeout) clearTimeout(card._autoCloseTimeout);
+          card._autoCloseTimeout = setTimeout(() => {
+            card.classList.remove('open');
+          }, 2000);
+        }, 350);
       }
-    });
+    }
   });
+});
 
   // =========================================================
   // PREISE-LINK IN FAQ: PREISE-KARTE MIT TIMER ÖFFNEN
@@ -308,16 +324,45 @@ if (splitCard) {
     });
   });
 
-  // =========================================================
+    // =========================================================
   // EINZELBERATUNG-BUTTON: KONTAKT SCROLLEN
   // =========================================================
   document.querySelectorAll('.einzelberatung-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.getElementById('kontakt');
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // sanft zum Kontakt-Bereich scrollen (oberhalb mit kleinem Versatz)
+    const target = document.getElementById('kontakt');
+    if (target) {
+      if (window.innerWidth > 600) {
+        // Desktop: fester Scrollpunkt – hier den Wert nach Wunsch anpassen
+        const scrollPosition = 4350; // <— Pixel-Wert frei definieren
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      } else {
+        // Mobile: Standard-Scroll wie bisher
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Preiskarte Einzeltermin öffnen und nach 2 Sekunden wieder schließen
+    closeAllCards(preiseCards);
+    const einzelCard = preiseCards[1]; // Index 1 = Einzeltermin
+    if (einzelCard) {
+      setTimeout(() => {
+        einzelCard.classList.add('open');
+        if (einzelCard._autoCloseTimeout) clearTimeout(einzelCard._autoCloseTimeout);
+        einzelCard._autoCloseTimeout = setTimeout(() => {
+          einzelCard.classList.remove('open');
+        }, 2000);
+      }, 350);
+    }
   });
+});
+
+
 
   // =========================================================
   // HERO CTA → FAQ SCROLLEN
@@ -358,25 +403,20 @@ if (splitCard) {
   // =========================================================
   // DATENSCHUTZ & IMPRESSUM ANZEIGEN / SCROLLEN
   // =========================================================
- const dsiBtn = document.getElementById('datenschutzImpressumBtn');
-const dsiSection = document.getElementById('datenschutz-impressum');
-if (dsiBtn && dsiSection) {
-  dsiBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (!dsiSection.classList.contains('visible')) {
-      dsiSection.classList.add('visible');
-      // NEU: nicht die Section, sondern die Karte scrollen
-      const card = dsiSection.querySelector('.datenschutz-card, .impressum-card');
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
+  const dsiBtn = document.getElementById('datenschutzImpressumBtn');
+  const dsiSection = document.getElementById('datenschutz-impressum');
+  if (dsiBtn && dsiSection) {
+    dsiBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (!dsiSection.classList.contains('visible')) {
+        dsiSection.classList.add('visible');
         dsiSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        dsiSection.classList.remove('visible');
       }
-    } else {
-      dsiSection.classList.remove('visible');
-    }
-  });
-}
+    });
+  }
+
   // =========================================================
   // HEADER AUTO-HIDE wie auf der alten Website: ein-/ausblenden beim Scrollen
   // =========================================================
