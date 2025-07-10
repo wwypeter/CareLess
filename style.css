@@ -1142,6 +1142,12 @@ body {
     left: -8px;
   }
 }
+@media only screen and (width: 412px) {
+  body {
+    position: relative;
+    left: -8px; 
+  }
+}
 
 @media (max-width: 600px) {
   #s1.section,
