@@ -1133,7 +1133,7 @@ body {
 @media (max-width: 600px) {
   body {
     position: relative;
-    left: -8px; 
+    left: 0px; 
   }
 }
 
